@@ -14,6 +14,12 @@ import java.util.Random;
  */
 public class KMeans {
 	
+	public int grado= 0;
+	
+	public KMeans(int dimension) {
+		this.grado= dimension;
+	}
+	
     public KMeansResultado calcular(List<Punto> puntos, Integer k) {
     	List<Cluster> clusters = elegirCentroides(puntos, k);							// Se seleccionan los clusters inciales.
 
@@ -38,7 +44,7 @@ public class KMeans {
     		Float[] d = new Float[c.getPuntos().get(0).getGrado()];						//TODO: Este getGrado puede sustituirse por el grado que le pasemos por fichero, da menos problemas de esa forma.
     		Arrays.fill(d, 0f);
     		for (Punto p : c.getPuntos()) {
-    			for (int i = 0; i < p.getGrado(); i++) {
+    			for (int i = 0; i < this.grado; i++) {
     				d[i] += (p.get(i) / c.getPuntos().size());							// Recalculamos el centrroide del Cluster
     			}
     		}
@@ -127,7 +133,7 @@ public class KMeans {
     	List<Float> maximos = new ArrayList<Float>();
     	List<Float> minimos = new ArrayList<Float>();
 
-    	for (int i = 0; i < puntos.get(0).getGrado(); i++) {
+    	for (int i = 0; i < this.grado; i++) {
     		Float min = Float.POSITIVE_INFINITY, max = Float.NEGATIVE_INFINITY;
 
     		for (Punto punto : puntos) {
@@ -142,9 +148,9 @@ public class KMeans {
     	Random random = new Random();
 
     	for (int i = 0; i < k; i++) {
-    		Float[] data = new Float[puntos.get(0).getGrado()];
+    		Float[] data = new Float[this.grado];
     		Arrays.fill(data, 0f);
-    		for (int d = 0; d < puntos.get(0).getGrado(); d++) {
+    		for (int d = 0; d < this.grado; d++) {
     			data[d] = random.nextFloat()
     					* (maximos.get(d) - minimos.get(d)) + minimos.get(d);		//Para cada coordenada: NumeroRandom*(puntomax-puntomin)+puntomin.
     		}

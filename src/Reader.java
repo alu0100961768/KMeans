@@ -27,8 +27,8 @@ public class Reader {
 		System.out.println();	
 		
 		reader.readLine(); //Número de puntos.
-		reader.readLine(); //Dimensión de los puntos.	
-		//int k=Integer.parseInt(reader.readLine());
+		//reader.readLine(); //Dimensión de los puntos.	
+		int dimension= Integer.parseInt(reader.readLine());									// Dimensión de los puntos.
 		
 		String line= reader.readLine();														
 		List<String[]> myEntries= new ArrayList<String[]>();								// Lista de coordenadas de cada punto, necesario para crear los puntos.
@@ -48,11 +48,11 @@ public class Reader {
 		}
 		
 		////////////////////////////////////////////////////////////////////////
-		KMeans kmeans = new KMeans();
+		KMeans kmeans = new KMeans(dimension);
 		
 		KMeansResultado resultado = kmeans.calcular(puntos, k);								// Para nuestra lista de puntos, para el número de k-agrupamientos solicitado, calcular KMeans.
 		
-		writer.write("------- Para k centroides=" + k + ": ofv=" + resultado.getOfv()
+		writer.write("------- Para k centroides= " + k /*+ ": ofv=" + resultado.getOfv()*/
 	    + "-------\n\n");
 		int i = 0;
 		for (Cluster cluster : resultado.getClusters()) {									// Para cada Cluster.

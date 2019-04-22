@@ -31,11 +31,14 @@ public class Punto {
     // Getters
     public float get(int dimension) {
     	//TODO: Devolver 0 si no existe la dimensión.
-    	return data[dimension];
+    	if(dimension<data.length)
+    		return data[dimension];
+    	else
+    		return 0;
     }
 
-    public int getGrado() {
-    	//TODO: Guardar la dimension de cada punto por los paramentros pasados por fichero, en lugar de calcularlo así.
+    public int getGrado() {	// ¡No se debe usar este método en la medida de lo posible!
+    	//NOTA: Usar la dimension de cada punto teniendo en cuenta la dimensión pasada por referencia en el archivo de entrada, en lugar de calcularlo usando este método.
     	return data.length;
     }
 
